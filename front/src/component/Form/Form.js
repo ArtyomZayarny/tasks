@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { useTasks } from './hooks/useTasks'
-
-import Input from './ui/Input/Input'
-
-
+import { useTasks } from '../hooks/useTasks'
+import Input from '../ui/Input/Input'
+import styles from './Form.module.scss'
 
 export default function Form(props) {
     const [formValues, setFormValues] = useState({
@@ -14,9 +12,7 @@ export default function Form(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(formValues)
         createTask(formValues)
-        //console.log('submit')
     }
 
     const changeHandler = (name, value) => {
@@ -24,7 +20,7 @@ export default function Form(props) {
         setFormValues({ ...formValues, [name]: value })
     }
     return (
-        <form onSubmit={(e) => { handleSubmit(e) }}>
+        <form className={styles['form']} onSubmit={(e) => { handleSubmit(e) }}>
             <Input
                 type="text"
                 name="title"
@@ -37,7 +33,7 @@ export default function Form(props) {
                 changeHandler={changeHandler}
                 value={formValues.description}
             />
-            <button type="submit">Add</button>
+            <button type="submit" className={styles['addTask']}>Add</button>
         </form>
     )
 }

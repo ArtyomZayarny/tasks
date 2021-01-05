@@ -6,7 +6,7 @@ export default function TaskList(props) {
 
     return (
         <ul>
-            {props.tasks.length > 0 && props.tasks.map(task => <Task task={task} />)}
+            {props.tasks.length > 0 && props.tasks.map(task => <Task key={task.id} task={task} />)}
         </ul>
     )
 }
