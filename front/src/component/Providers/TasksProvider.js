@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { apiClient } from '../../apiClient'
+import { useEffect } from 'react';
+
+import { useTasks } from '../hooks/useTasks';
 
 export default function TasksProvider(props) {
-    const [tasks, setTasks] = useState([])
+    const { getTasks, loading, tasks } = useTasks()
 
     useEffect(() => {
-        apiClient.get('/tasks')
-            .then(res => setTasks(res.data))
+        getTasks()
     }, [])
 
 

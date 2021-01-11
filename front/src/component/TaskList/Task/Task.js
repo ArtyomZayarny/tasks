@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Card } from 'antd';
 import 'antd/lib/card/style/css'
-import styles from './Task.module.css'
+import styles from './Task.module.scss'
 
 Task.propsTypes = {
     task: PropTypes.shape({
@@ -13,8 +13,8 @@ Task.propsTypes = {
 }
 export default function Task({ task }) {
     return (
-        <Card title={task.title} className={styles.card}>
-            <p>{task.description}</p>
+        <Card className={styles['card']} bodyStyle={{ padding: 15 }}>
+            <h2 className={styles['title']}>{task.title}</h2>
         </Card>
     )
 }

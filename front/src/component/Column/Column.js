@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TaskList from '../TaskList/TaskList'
 import TasksProvider from '../Providers/TasksProvider'
 import Form from '../Form';
-import Button from '../ui/buttons/button'
+import { Button } from 'antd';
 import styles from './Column.module.scss'
 
 export default function Column(props) {
@@ -18,7 +18,7 @@ export default function Column(props) {
                 }
             </TasksProvider>
             {showForm && <Form className="column" />}
-            {!showForm && <Button className={styles['plus']} showForm={setShowForm}>Add new task</Button>}
+            {!showForm && <Button className={styles['plus']} onClick={setShowForm}> + Add new task</Button>}
         </div>
     )
 }

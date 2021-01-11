@@ -12,6 +12,7 @@ export default function Input({ type, name, value, changeHandler }) {
     return (
         <>
             <input
+                autoComplete="off"
                 name={name}
                 type={type}
                 value={value}
