@@ -3,27 +3,26 @@ import { apiClient } from '../../apiClient'
 
 export function useTasks(props) {
     // eslint-disable-next-line
-    const [tasks, setTasks] = useState({});
     const [loading, setLoading] = useState(false);
 
-    const createTask = (task) => {
+    const createTask = async (newTask) => {
         setLoading(true)
-        apiClient.post('/tasks', task)
+        const task = await apiClient.post('/tasks', newTask)
             .then(res => {
                 setLoading(false)
-                console.log(res.data)
-                getTasks();
+                return res.data
             })
+        return task
     }
 
-    const getTasks = () => {
+    const getTasks = async () => {
         setLoading(true)
-        apiClient.get('/tasks')
+        const tasks = await apiClient.get('/tasks')
             .then(res => {
                 setLoading(false)
-                setTasks(res.data)
-                console.log(res.data)
+                return res.data
             })
+        return tasks
     }
-    return { createTask, loading, getTasks, tasks }
+    return { createTask, loading, getTasks }
 }

@@ -1,29 +1,28 @@
 import React, { useState } from 'react'
-import { useTasks } from '../hooks/useTasks'
 import Input from '../ui/Input/Input'
 import styles from './Form.module.scss'
 import { Button } from 'antd';
-import { Spin } from 'antd';
 
-export default function Form(props) {
+export default function Form({ addTask, ...props }) {
+    const [showForm, setShowForm] = useState(false)
     const [formValues, setFormValues] = useState({
         title: '',
         description: ''
     })
-    const { createTask, loading } = useTasks(formValues);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        createTask(formValues)
+        addTask(formValues)
+        setShowForm(false)
+        setFormValues({ ...formValues, title: '' })
     }
 
     const changeHandler = (name, value) => {
-        console.log(name, value)
         setFormValues({ ...formValues, [name]: value })
     }
     return (
         <>
-            {!loading && <form className={styles['form']} onSubmit={(e) => { handleSubmit(e) }}>
+            {showForm && <form className={styles['form']} onSubmit={(e) => { handleSubmit(e) }}>
                 <Input
                     type="text"
                     name="title"
@@ -31,9 +30,9 @@ export default function Form(props) {
                     value={formValues.title}
                     required="true"
                 />
-                <Button htmlType="submit">Add</Button>
+                <Button htmlType="submit" >Add</Button>
             </form>}
-            {loading && <Spin />}
+            {!showForm && <Button className={styles['plus']} onClick={() => { setShowForm(true) }}> + Add new task</Button>}
         </>
     )
 }
