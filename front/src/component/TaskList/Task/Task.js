@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card } from 'antd';
 import 'antd/lib/card/style/css'
 import styles from './Task.module.scss'
+import { DeleteOutlined } from '@ant-design/icons'
 
 Task.propsTypes = {
     task: PropTypes.shape({
@@ -11,11 +11,15 @@ Task.propsTypes = {
         description: PropTypes.string.isRequired
     })
 }
-export default function Task({ task }) {
+
+export default function Task({ task, handleDelete, ...props }) {
     return (
-        <Card className={styles['card']} bodyStyle={{ padding: 15 }}>
+        <div className={styles['card']} >
             <h2 className={styles['title']}>{task.title}</h2>
-        </Card>
+            <button className={styles['delete']} onClick={() => { handleDelete(task.id) }}>
+                <DeleteOutlined />
+            </button>
+        </div>
     )
 }
 

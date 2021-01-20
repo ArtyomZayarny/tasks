@@ -12,7 +12,14 @@ export default function Column(props) {
 
             <TasksProvider >
                 {
-                    (tasksList, addTask, loading) => { return <TaskList tasks={tasksList} addTask={addTask} loading={loading} /> }
+                    (tasksList, addTask, loading, handleDelete) => {
+                        return <TaskList
+                            tasks={tasksList}
+                            addTask={addTask}
+                            loading={loading}
+                            handleDelete={handleDelete}
+                        />
+                    }
                 }
             </TasksProvider>
 

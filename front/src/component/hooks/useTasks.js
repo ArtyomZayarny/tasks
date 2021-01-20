@@ -24,5 +24,15 @@ export function useTasks(props) {
             })
         return tasks
     }
-    return { createTask, loading, getTasks }
+
+    const deleteTask = async (id) => {
+        setLoading(true)
+        const response = await apiClient.delete(`/tasks/${id}`)
+            .then(res => {
+                setLoading(false)
+                return res.data
+            })
+        return response
+    }
+    return { createTask, loading, getTasks, deleteTask }
 }

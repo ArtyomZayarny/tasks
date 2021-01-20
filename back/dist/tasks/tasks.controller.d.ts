@@ -4,4 +4,5 @@ export declare class TasksController {
     constructor(tasksService: TasksService);
     getAllTasks(): import("./task.model").Task[];
     createTask(title: string, description: string): import("./task.model").Task;
+    deleteTask(id: string): void;
 }
