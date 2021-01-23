@@ -28,6 +28,9 @@ let TasksController = class TasksController {
     deleteTask(id) {
         this.tasksService.deleteTask(id);
     }
+    updateTask(id, title) {
+        return this.tasksService.updateTask(id, title);
+    }
 };
 __decorate([
     common_1.Get(),
@@ -50,6 +53,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], TasksController.prototype, "deleteTask", null);
+__decorate([
+    common_1.Patch('/:id/title'),
+    __param(0, common_1.Param('id')),
+    __param(1, common_1.Body('title')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], TasksController.prototype, "updateTask", null);
 TasksController = __decorate([
     common_1.Controller('tasks'),
     __metadata("design:paramtypes", [tasks_service_1.TasksService])

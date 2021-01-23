@@ -34,5 +34,19 @@ export function useTasks(props) {
             })
         return response
     }
-    return { createTask, loading, getTasks, deleteTask }
+
+    const updateTask = async (id, title) => {
+        setLoading(true)
+        const response = await apiClient.patch(`/tasks/${id}/title`, { title })
+            .then(res => {
+                setLoading(false)
+                return res.data
+            })
+            .catch(() => {
+                setLoading(false)
+                return false
+            })
+        return response
+    }
+    return { createTask, loading, getTasks, deleteTask, updateTask }
 }

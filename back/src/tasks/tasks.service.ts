@@ -23,4 +23,9 @@ export class TasksService {
     deleteTask(id: string): void {
         this.tasks = this.tasks.filter(task => task.id !== id)
     }
+    updateTask(id: string, title: string): Task {
+        const task = this.tasks.find(task => task.id === id)
+        task.title = title;
+        return task
+    }
 }

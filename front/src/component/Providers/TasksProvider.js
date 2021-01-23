@@ -5,7 +5,8 @@ import TaskList from '../TaskList/TaskList';
 
 export default function TasksProvider(props) {
     const [tasksList, setTasksList] = useState([])
-    const { getTasks, createTask, loading, deleteTask } = useTasks()
+    const [error, setError] = useState(false)
+    const { getTasks, createTask, loading, deleteTask, updateTask } = useTasks()
 
     const fetchTasks = async () => {
         const tasks = await getTasks();
@@ -28,11 +29,18 @@ export default function TasksProvider(props) {
 
     }
 
+    const handleUpdate = async (id, title) => {
+        const task = await updateTask(id, title)
+        if (!task) {
+            setError(true)
+        }
+    }
+
     useEffect(() => {
         fetchTasks()
     }, [])
 
 
-    return props.children(tasksList, addTask, loading, handleDelete)
+    return props.children(tasksList, addTask, loading, handleDelete, handleUpdate, error)
 }
 
