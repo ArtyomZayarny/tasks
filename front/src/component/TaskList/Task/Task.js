@@ -12,11 +12,13 @@ Task.propsTypes = {
     })
 }
 
-export default function Task({ task, handleDelete, handleUpdate, ...props }) {
+export default function Task({ task, handleDelete, changeOrder, handleUpdate, setCurrentTask, ...props }) {
     const [title, setTitle] = useState(task.title)
     const [isEdit, setIsEdit] = useState(false)
     const [action, setAction] = useState('edit')
     const inputEl = useRef(null);
+
+
 
     const handleChange = (value) => {
         setTitle(value)
@@ -47,8 +49,38 @@ export default function Task({ task, handleDelete, handleUpdate, ...props }) {
                 return <EditOutlined />
         }
     }
+
+    const dragStartHandler = (e, task) => {
+        //console.log('drag', task)
+        setCurrentTask(task)
+    }
+
+    const dragEndHandler = (e) => {
+        e.preventDefault()
+        e.target.style.background = 'white'
+    }
+
+    const dragOverHandler = (e) => {
+        e.preventDefault()
+        e.target.style.background = 'lightgray'
+    }
+
+    const dropHandler = (e, task) => {
+        e.preventDefault()
+        changeOrder(task)
+        e.target.style.background = 'white'
+    }
     return (
-        <div className={styles['card']} >
+        <div
+            className={styles['card']}
+            draggable={true}
+            onDragStart={(e) => { dragStartHandler(e, task) }}
+            onDragLeave={(e) => { dragEndHandler(e) }}
+            onDragEnd={(e) => { dragEndHandler(e) }}
+            onDragOver={(e) => { dragOverHandler(e) }}
+            onDrop={(e) => { dropHandler(e, task) }}
+
+        >
             <input
                 ref={inputEl}
                 className={isEdit ? styles['title'] : styles['not-edit']}

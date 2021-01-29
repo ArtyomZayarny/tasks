@@ -1,0 +1,1 @@
+export const sortOrder = (a, b) => a.order > b.order ? 1 : -1
