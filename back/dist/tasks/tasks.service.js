@@ -22,6 +22,7 @@ let TasksService = class TasksService {
             id: uuid_1.v4(),
             title,
             description,
+            order: (this.tasks.length + 1).toString(),
             status: task_model_1.TaskStatus.OPEN
         };
         this.tasks.push(task);

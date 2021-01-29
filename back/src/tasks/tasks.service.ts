@@ -14,6 +14,7 @@ export class TasksService {
             id: uuidv4(),
             title,
             description,
+            order: (this.tasks.length + 1).toString(),
             status: TaskStatus.OPEN
         }
         this.tasks.push(task);

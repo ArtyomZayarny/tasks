@@ -1177,12 +1177,12 @@
         "affectsGlobalScope": false
       },
       "../src/tasks/task.model.ts": {
-        "version": "e359d3ec7ea09f909792835ae44e302e1d67a569d72d33bf6573a1e07295cbd3",
-        "signature": "1f1972745fd56e4323782ccdc86730f1ae6b07fc29012c7c2a2872104f6d6fca",
+        "version": "e99c12f84831edb640dcbedeac0c3dc9cfaec5dadad35b3b7036aeb105703927",
+        "signature": "301e4f40c27fc1419f63834946692e07d680c873f837d5e3721e2590e1e0e099",
         "affectsGlobalScope": false
       },
       "../src/tasks/tasks.service.ts": {
-        "version": "af10cafffa08e601b31ad70d1c4ea84a7b5e3e7ce43c39b3133093e9a7b7fbeb",
+        "version": "8a903a2d322c7516207b5e3e004396ca672d0e81a50188007b3299e089915fcf",
         "signature": "8f135d607d144f4090ce4d9453bac2cc3dae1fbe8b02641f71820502b7cb2e57",
         "affectsGlobalScope": false
       },
